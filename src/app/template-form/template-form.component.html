@@ -1,0 +1,63 @@
+
+
+
+
+
+
+<div class="container">
+  <form autocomplete="off" #myFrom="ngForm" (ngSubmit)="formSubmit()">
+      <div class="form-group row mt-5">
+        <label class="col col-sm-2">Name</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" name="name" #myname="ngModel" [class.is-invalid]="myname.invalid && myname.dirty"
+                 minlength="6"
+                 maxlength="15"
+                 [(ngModel)]="customer.name" required>
+          <small *ngIf="myname?.dirty&& myname?.errors?.required" class="text-danger">Name is required!</small>
+          <small class="text-danger" *ngIf="myname?.dirty && myname?.errors?.minlength">Name must be 6 characters!</small>
+        </div>
+
+      </div>
+
+    <div class="form-group row">
+      <label class="col col-sm-2">Age</label>
+      <div class="col-sm-8">
+        <input type="number" class="form-control"  name="age" [(ngModel)]="customer.age" required>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col col-sm-2">StreetName</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" name="streetName" [(ngModel)]="customer.streetName">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col col-sm-2">State</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" name="state" [(ngModel)]="customer.state">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2">Gender</label>
+      <div class="col-sm-8">
+        <div class="form-check-inline">
+          <input type="radio" class="form-check-input" value="Male" name="gender" [(ngModel)]="customer.gender">Male
+        </div>
+        <div class="form-check-inline">
+          <input type="radio" class="form-check-input" value="Female" name="gender" [(ngModel)]="customer.gender">Female
+        </div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="!myFrom.valid"  class="btn btn-primary">Submit</button>
+
+  </form>
+
+  {{myFrom.valid}}
+
+
+  {{customer|json}}
+
+</div>
